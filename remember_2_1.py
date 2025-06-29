@@ -9,3 +9,10 @@ def same_parity(numbers: list) -> list:
 
 def is_valid(string: str) -> bool:
     return string.isdigit() and len(string) in [4, 5, 6]
+
+
+def print_given(*args, **kwargs):
+    for elem in args:
+        print(elem, type(elem))
+    for key, value in sorted(kwargs.items()):
+        print(key, value, type(value))
