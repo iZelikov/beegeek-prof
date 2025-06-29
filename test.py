@@ -33,16 +33,16 @@ def test(test_number = None):
                     zip_file.open(f'{i}.clue', 'r') as a:
                 t = t.read().decode('utf-8')  # Содержимое файла Теста
                 a = a.read().decode('utf-8')  # Содержимое файла Ответа
-                print(f'\033[1;33m test No {i}\033[m')
+                print(f'\033[1;33mtest No {i}\033[m')
                 output = io.StringIO()  # Создаем объект для перехвата вывода
                 sys.stdout = output  # Перенаправляем стандартный вывод на объект перехвата
                 exec(t)  # Выполнить файл с тестом, всегда вернет None
                 answer = output.getvalue().rstrip('\n')  # Получаем данные, которые были напечатаны
                 sys.stdout = sys.__stdout__  # Возвращаем стандартный вывод на место
-                print(' etalon: ', '\033[1;34m', a, '\033[m')  # выводим ответ
-                print(' answer: ', '\033[1;32m' if answer == a else '\033[1;31m', answer, '\033[m')
+                print('etalon: ', '\033[1;34m', a, '\033[m')  # выводим ответ
+                print('answer: ', '\033[1;32m' if answer == a else '\033[1;31m', answer, '\033[m')
                 if answer == a: tests_passed += 1
-                else: print('\033[1;35m', t, '\033[m')
+                else: print('\033[1;35m', t, '\033[m', sep='')
                 print()
         print(' Итого тестов:'.ljust(18), '\033[1;3;34m', total_tests, '\033[m')
         print(' Пройдено тестов:'.ljust(18), '\033[1;3;32m' if total_tests == tests_passed else '\033[31m', tests_passed,
