@@ -43,3 +43,38 @@ def likes(names: list) -> str:
             return f'{names[0]}, {names[1]} и {names[2]} оценили данную запись'
         case _:
             return f'{names[0]}, {names[1]} и {len(names) - 2} других оценили данную запись'
+
+
+def index_of_nearest(numbers: list, number: int) -> int:
+    result = -1
+    dif = float('inf')
+    for i, n in enumerate(numbers):
+        if abs(number - n) < dif:
+            dif = abs(number - n)
+            result = i
+    return result
+
+
+def spell(*words: str) -> dict:
+    result = {}
+    for word in words:
+        result[word[0].lower()] = max(result.get(word[0].lower(), 0), len(word))
+    return result
+
+
+def choose_plural(amount: int, declensions: tuple) -> str:
+    p = {1: 0, 2: 1, 3: 1, 4: 1, 11: 2, 12: 2, 13: 2, 14: 2}
+    return f'{amount} {declensions[p.get(amount % 100, p.get(amount % 10, 2))]}'
+
+
+def get_biggest(numbers: list) -> int:
+    from functools import cmp_to_key
+    def comparator(a: str, b: str) -> int:
+        if a + b > b + a:
+            return -1
+        elif a + b < b + a:
+            return 1
+        else:
+            return 0
+
+    return int(''.join(sorted(map(str, numbers), key=cmp_to_key(comparator)))) if numbers else -1
