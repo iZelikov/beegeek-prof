@@ -1,5 +1,16 @@
-from calendar import *
-from datetime import date
+import sys
+from datetime import datetime
 
-year = int(input())
-[print(date(year, m, (3 - monthrange(year, m)[0]) % 7 + 15).strftime('%d.%m.%Y')) for m in range(1, 13)]
+prev_prev = int(sys.stdin.readline().strip())
+prev = int(sys.stdin.readline().strip())
+a_n = prev - prev_prev
+g_n = prev / prev_prev
+progressions = ("Не прогрессия", "Арифметическая прогрессия", "Геометрическая прогрессия")
+a, g = 1, 2
+for i in sys.stdin:
+    current = int(i.strip())
+    if current - prev != a_n: a = 0
+    if current / prev != g_n: g = 0
+    if not a and not g: break
+    prev = current
+print(progressions[a + g])
