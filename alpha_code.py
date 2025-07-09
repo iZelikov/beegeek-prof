@@ -1,10 +1,9 @@
-import csv
+from zipfile import ZipFile
 
-with open('prices.csv', encoding='utf-8') as file_in:
-    table = csv.DictReader(file_in, delimiter=';')
-    low_prices = []
-    for row in table:
-        lowest_item = min(row, key= lambda x: int(row[x]) if row[x].isdigit() else float('inf'))
-        low_prices.append((row[lowest_item], lowest_item, row['Магазин']))
-    product = sorted(low_prices)[0]
-    print(product[1], product[2], sep=": ")
+with ZipFile('test.zip') as z:
+    # print(*z.infolist(), sep="\n")
+    info = z.infolist()
+    print(info[6].file_size)                # размер начального файла в байтах
+    print(info[6].compress_size)            # размер сжатого файла в байтах
+    print(info[6].filename)                 # имя файла
+    print(info[6].date_time)                # дата изменения файла
