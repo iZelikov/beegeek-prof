@@ -1,17 +1,20 @@
-from zipfile import ZipFile
+import pickle
 
 
-def get_size_summary(size):
-    sizes = {"B": 1, "KB": 1024, "MB": 1024 ** 2, "GB": 1024 ** 3}
-    for b, s in sizes.items():
-        if 0 <= round(size / s) < 1024:
-            return f'{round(size / s)} {b}'
-    return f'{round(size / sizes["GB"])} GB'
+def calculate_sum(obj):
+    obj_sum = 0
+    if isinstance(obj, dict):
+        obj_sum = sum(map(int, filter(lambda x: isinstance(x, int), obj.keys())))
+    elif isinstance(obj, list):
+        filtered = list(filter(lambda x: isinstance(x, int), obj)) or [0]
+        obj_sum = max(filtered) * min(filtered)
+    return obj_sum
 
 
-with ZipFile('desktop.zip') as zip_file:
-    for f in zip_file.infolist():
-        file_name_list = f.filename.rstrip('/').split('/')
-        intends = " " * (2 * (len(file_name_list) - 1))
-        summary = " " + get_size_summary(f.file_size) if not f.is_dir() else ""
-        print(f'{intends}{file_name_list[-1]}{summary}')
+with open(input(), 'rb') as file:
+    check_sum = int(input())
+    obj = pickle.load(file)
+    obj_sum = calculate_sum(obj)
+print(f"Контрольные суммы {"не " * obj_sum == check_sum}совпадают")
+
+print(calculate_sum({}))
