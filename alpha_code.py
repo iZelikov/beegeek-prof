@@ -1,5 +1,3 @@
-python = ['word']
+from collections import namedtuple
 
-x = python in python
 
-print(x)
