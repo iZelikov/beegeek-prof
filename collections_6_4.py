@@ -38,7 +38,7 @@ def users_plan():
              User('Russell', 'Smith', 'isaacson@comcast.net', 'Bronze'),
              User('Megan', 'Patterson', 'hoangle@outlook.com', 'Basic')]
     plans = ['Gold', 'Silver', 'Bronze', 'Basic']
-    users.sort(key=lambda x: (plans.index(x.plan), x.email))
+    users.sort(key=lambda x: (plans.index(x.plan), x.e))
     [print(f'{u.name} {u.surname}\n  Email: {u.email}\n  Plan: {u.plan}\n') for u in users]
 
 
