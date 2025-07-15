@@ -1,18 +1,13 @@
 from collections import ChainMap, defaultdict, OrderedDict, Counter
 
-bread = {'булочка с кунжутом': 15, 'обычная булочка': 10, 'ржаная булочка': 15}
-meat = {'куриный бифштекс': 50, 'говяжий бифштекс': 70, 'рыбный бифштекс': 40}
-sauce = {'сливочно-чесночный': 15, 'кетчуп': 10, 'горчица': 10, 'барбекю': 15, 'чили': 15}
-vegetables = {'лук': 10, 'салат': 15, 'помидор': 15, 'огурцы': 10}
-toppings = {'сыр': 25, 'яйцо': 15, 'бекон': 30}
+n = int(input())
+# msq = [int(c) for s in range(n) for c in input().split()]
+# magic_set = set()
+# for i in range(n):
+#     magic_set.add(sum(msq[i*n:i*n+n]))
+#     magic_set.add(sum(msq[i::n]))
+# magic_set.add(sum(msq[::n+1]))
+# magic_set.add(sum(msq[n-1:1-n:n-1]))
+# print(["NO","YES"][len(magic_set)==1 and set(msq)=={(i+1) for i in range(n**2)}])
 
-ingredients = ChainMap(bread, meat, sauce, vegetables, toppings)
-order = Counter(input().split(','))
-spaces = len(max(order, key=len))
-check = [{'ing': f'{ing:{spaces}} x {count}', 'price': ingredients[ing], 'count': count}
-         for ing, count in sorted(order.items())]
-total = f'ИТОГ: {sum(map(lambda x: x['price']*x['count'],check))}р'
-line_length = max(max(map(lambda x: len(x['ing']), check)), len(total))
-[print(line['ing']) for line in check]
-print('-'*line_length)
-print(total)
+print(set(range(n ** 2)))

@@ -16,7 +16,8 @@ from functools import wraps
 # from collections_6_5 import *
 # from collections_6_6 import *
 # from collections_6_7 import *
-from collections_6_8 import *
+# from collections_6_8 import *
+from collections_6_10 import *
 
 import time
 from functools import wraps
