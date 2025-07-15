@@ -1,13 +1,10 @@
-from collections import ChainMap, defaultdict, OrderedDict, Counter
+def get_max_index(numbers):
+    max_index = 0
+    max_value = numbers[0]
 
-n = int(input())
-# msq = [int(c) for s in range(n) for c in input().split()]
-# magic_set = set()
-# for i in range(n):
-#     magic_set.add(sum(msq[i*n:i*n+n]))
-#     magic_set.add(sum(msq[i::n]))
-# magic_set.add(sum(msq[::n+1]))
-# magic_set.add(sum(msq[n-1:1-n:n-1]))
-# print(["NO","YES"][len(magic_set)==1 and set(msq)=={(i+1) for i in range(n**2)}])
+    for index, value in enumerate(numbers):
+        if index >= max_value:
+            max_index = index
+            max_value = value
 
-print(set(range(n ** 2)))
+    return max_index
