@@ -1,10 +1,5 @@
-def get_max_index(numbers):
-    max_index = 0
-    max_value = numbers[0]
-
-    for index, value in enumerate(numbers):
-        if index >= max_value:
-            max_index = index
-            max_value = value
-
-    return max_index
+try:
+    with open(input(), 'r', encoding='utf-8') as file:
+        print(file.read())
+except:
+    print("Файл не найден")
