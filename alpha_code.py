@@ -1,5 +1,3 @@
-f = input()
-a, b = map(int, input().split())
-l = [eval(f) for x in range(a, b + 1)]
-print(f"Минимальное значение функции {f} на отрезке [{a}; {b}] равно {min(l)}")
-print(f"Максимальное значение функции {f} на отрезке [{a}; {b}] равно {max(l)}")
+fib = lambda n: fib(n-1) + fib(n-2) if n > 2 else 1
+
+print(fib(5))
