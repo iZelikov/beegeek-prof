@@ -1,3 +1,12 @@
-fib = lambda n: fib(n-1) + fib(n-2) if n > 2 else 1
+def greeting(name):
+    print('Hello,', name)
 
-print(fib(5))
+
+greeting.publish = False
+greeting.names = ['Timur', 'Arthur']
+
+if greeting.publish:
+    greeting('Dima')
+if hasattr(greeting, 'names'):
+    name = greeting.names[0]
+    greeting(name)
