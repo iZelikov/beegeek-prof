@@ -4,7 +4,7 @@ import io
 import sys
 import os
 from functools import wraps
-from functions_9_9 import *
+from iterators_generators_10_2 import *
 
 import time
 from functools import wraps
