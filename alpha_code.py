@@ -1,11 +1,9 @@
-numbers = [1, 2, 3, 4, 5]
+def bee():
+    for char in 'bee':
+        yield char
 
-iterator = iter(numbers)
+def geek():
+    yield from 'geek'
 
-next(iterator)
-next(iterator)
-
-del numbers[0]
-del numbers[1]
-
-print(next(iterator))
+print(*bee())
+print(*geek())
