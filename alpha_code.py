@@ -1,3 +1,1 @@
-from itertools import groupby, combinations_with_replacement
-
-print(*combinations_with_replacement([1,2,3,4],r=4))
+print(*map("".join, __import__('itertools').product(map(str,"0123456789ABCDEF"[:int(input())]), repeat=int(input()))))
