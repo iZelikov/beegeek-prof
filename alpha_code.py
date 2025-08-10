@@ -1,1 +1,0 @@
-print(*map("".join, __import__('itertools').product(map(str,"0123456789ABCDEF"[:int(input())]), repeat=int(input()))))
