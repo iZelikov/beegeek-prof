@@ -1,2 +1,2 @@
 import re
-print(re.findall(r'ca[a-e]|ca[1-5]','I have these files: caaat.png, acab.txt, cat.jpeg, tca-ca.txt, na1.csv, ca2.csv'))
+print(re.findall(r'^I \w+ \w+[.!]$','You can also register on the platform using one of already existing accounts on a third-party website. You can use an already existing social media accounts (Facebook, Google+, Twitter). Furthermore, you can also use GitHub, Coursera or edX account. '))
