@@ -1,2 +1,3 @@
 import re
-print(re.findall(r'^I \w+ \w+[.!]$','You can also register on the platform using one of already existing accounts on a third-party website. You can use an already existing social media accounts (Facebook, Google+, Twitter). Furthermore, you can also use GitHub, Coursera or edX account. '))
+
+print(sum(bool(re.search(r'beegeek', line, re.I)) for line in open(0)))
