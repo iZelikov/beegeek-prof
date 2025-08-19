@@ -11,3 +11,9 @@ def split_logic():
 
 def multiple_split(string: str, delimiters):
     return re.split('|'.join(re.escape(d) for d in delimiters), string)
+
+
+def sum_digits():
+    start, end = map(int, input().split())
+    pattern = re.compile(r'\d+')
+    print(sum(map(int, pattern.findall(input(), pos=start, endpos=end))))
