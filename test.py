@@ -3,11 +3,16 @@ from zipfile import ZipFile
 import io
 import sys
 import os
-from functools import wraps
-from regexp_11_9 import *
-
 import time
 from functools import wraps
+
+
+# Пишите решения задач в файле tasks.py (или замените этот импорт на свой файл)
+# Скачивайте тесты в папку tests, не распаковывая zip-архивы
+# По умолчанию проверяется последний скачанный zip-архив
+# Запускайте test.py для проверки решений
+
+from tasks import *
 
 
 def timer(func):
@@ -63,8 +68,8 @@ def test(test_number=None):
                 exec(t)  # Выполнить файл с тестом, всегда вернет None
                 answer = output.getvalue().rstrip('\n')  # Получаем данные, которые были напечатаны
                 sys.stdout = sys.__stdout__  # Возвращаем стандартный вывод на место
-                print('etalon: ', '\033[1;34m', a, '\033[m')  # выводим ответ
-                print('answer: ', '\033[1;32m' if answer == a else '\033[1;31m', answer, '\033[m')
+                print('etalon:\n', '\033[1;34m', a, '\033[m', sep = '')  # выводим ответ
+                print('answer:\n', '\033[1;32m' if answer == a else '\033[1;31m', answer, '\033[m', sep = '')
                 if answer == a:
                     tests_passed += 1
                 else:
