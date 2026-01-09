@@ -1,11 +1,10 @@
-from datetime import date
 from zipfile import ZipFile
 import io
 import sys
 import os
 import time
 from functools import wraps
-
+from pathlib import Path
 
 # Пишите решения задач в файле tasks.py (или замените этот импорт на свой файл)
 # Скачивайте тесты в папку tests, не распаковывая zip-архивы
@@ -32,7 +31,7 @@ def timer(func):
     return wrapper
 
 
-def get_latest_file(folder_path='', ext='zip'):
+def get_latest_file(folder_path: str | Path = '', ext='zip'):
     files = os.listdir(folder_path)  # Получаем список файлов в каталоге
     # Переменные для хранения информации о файле с самой свежей датой модификации
     latest_file = None
@@ -50,16 +49,17 @@ def get_latest_file(folder_path='', ext='zip'):
 
 
 def test(test_number=None):
-    dir_path = r'./tests'
-    file_name = f"tests_{test_number}.zip" if test_number else get_latest_file(dir_path)
-    with ZipFile(f'{dir_path}/{file_name}', 'r') as zip_file:
+    base_dir = Path(__file__).resolve().parent
+    test_path = base_dir / 'tests'
+    file_name = f"tests_{test_number}.zip" if test_number else get_latest_file(test_path)
+    file_path = test_path / file_name
+    with ZipFile(file_path, 'r') as zip_file:
         total_tests = int(len(zip_file.infolist()) / 2)  # Общее количество тестов
         tests_passed = 0  # Количество пройденных тестов
         print('Архив с тестами:', '\033[1;38;05;129m', file_name, '\033[m')
         for i in range(1, total_tests + 1):
             # Открыть файлы с тестом и ответом
-            with zip_file.open(f'{i}', 'r') as t, \
-                    zip_file.open(f'{i}.clue', 'r') as a:
+            with zip_file.open(f'{i}', 'r') as t, zip_file.open(f'{i}.clue', 'r') as a:
                 t = t.read().decode('utf-8')  # Содержимое файла Теста
                 a = a.read().decode('utf-8')  # Содержимое файла Ответа
                 print(f'\033[1;33mtest No {i}\033[m')
@@ -68,8 +68,8 @@ def test(test_number=None):
                 exec(t)  # Выполнить файл с тестом, всегда вернет None
                 answer = output.getvalue().rstrip('\n')  # Получаем данные, которые были напечатаны
                 sys.stdout = sys.__stdout__  # Возвращаем стандартный вывод на место
-                print('etalon:\n', '\033[1;34m', a, '\033[m', sep = '')  # выводим ответ
-                print('answer:\n', '\033[1;32m' if answer == a else '\033[1;31m', answer, '\033[m', sep = '')
+                print('etalon:\n', '\033[1;34m', a, '\033[m', sep='')  # выводим ответ
+                print('answer:\n', '\033[1;32m' if answer == a else '\033[1;31m', answer, '\033[m', sep='')
                 if answer == a:
                     tests_passed += 1
                 else:
